@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>App</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%if user_signed_in? %>
+<h3>Hello, <%= current_user.email %> !</h3>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete%>
+<%= link_to "エディット", edit_user_registration_path, method: :get%>
+<%else%>
+<%= link_to "サインイン", new_user_session_path, method: :get%>
+<%= link_to "ユーザー登録",  new_user_registration_path, method: :get%>
+<%end%>
+<%= yield %>
+
+</body>
+</html>
